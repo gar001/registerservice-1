@@ -18,7 +18,7 @@ public class EmployeeLoginCommand implements ResultCommandInterface<Employee> {
 		}
 		
 		EmployeeEntity employeeEntity = this.employeeRepository.byEmployeeId(this.employeeLogin.getEmployeeId());
-		if ((employeeEntity != null) && (employeeEntity.getPassword().equals(this.employeeLogin.getPassword()))) {
+		if ((employeeEntity != null) && (employeeEntity.getPassword().equals(EmployeeEntity.hashPassword(this.employeeLogin.getPassword())))) {
 			return new Employee(employeeEntity);
 		} else {
 			return new Employee().setApiRequestStatus(EmployeeApiRequestStatus.NOT_FOUND);

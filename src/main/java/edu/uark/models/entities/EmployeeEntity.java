@@ -1,5 +1,7 @@
 package edu.uark.models.entities;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -149,6 +151,20 @@ public class EmployeeEntity extends BaseEntity<EmployeeEntity> {
 		apiEmployee.setCreatedOn(this.createdOn);
 		
 		return apiEmployee;
+	}
+	
+	public static String hashPassword(String password) {
+		String hashedPassword;
+
+		try {
+			MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+			messageDigest.update(password.getBytes());
+			hashedPassword = new String(messageDigest.digest());
+		} catch (NoSuchAlgorithmException e) {
+			hashedPassword = StringUtils.EMPTY;
+		}
+		
+		return hashedPassword;
 	}
 	
 	public EmployeeEntity() {

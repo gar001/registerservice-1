@@ -19,6 +19,7 @@ public class EmployeeSaveCommand implements ResultCommandInterface<Employee> {
 			(new Employee()).setApiRequestStatus(EmployeeApiRequestStatus.INVALID_INPUT).
 				setApiRequestMessage("Name fields may not be empty.");
 		}
+		this.apiEmployee.setPassword(EmployeeEntity.hashPassword(this.apiEmployee.getPassword()));
 		
 		EmployeeEntity employeeEntity;
 		if (StringUtils.isBlank(this.apiEmployee.getEmployeeId())) {
