@@ -17,6 +17,14 @@ public class ProductListing {
 		return this;
 	}
 	
+	public int getSum() {
+		int sum = 0;
+		for(int i = 0; i < List.length(); i++) {
+			sum += List.get(i).price;
+		}
+		return sum;
+	}
+	
 	public ProductListing() {
 		this.products = new LinkedList<Product>();
 	}
