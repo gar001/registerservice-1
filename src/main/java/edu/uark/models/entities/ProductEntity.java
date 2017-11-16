@@ -19,6 +19,7 @@ public class ProductEntity extends BaseEntity<ProductEntity> {
 	protected void fillFromRecord(ResultSet rs) throws SQLException {
 		this.lookupCode = rs.getString(ProductFieldNames.LOOKUP_CODE);
 		this.count = rs.getInt(ProductFieldNames.COUNT);
+		this.price = rs.getInt(ProductFieldNames.PRICE);
 		this.createdOn = rs.getTimestamp(ProductFieldNames.CREATED_ON).toLocalDateTime();
 	}
 
@@ -26,6 +27,7 @@ public class ProductEntity extends BaseEntity<ProductEntity> {
 	protected Map<String, Object> fillRecord(Map<String, Object> record) {
 		record.put(ProductFieldNames.LOOKUP_CODE, this.lookupCode);
 		record.put(ProductFieldNames.COUNT, this.count);
+		record.put(ProductFieldNames.PRICE, this.price);
 		record.put(ProductFieldNames.CREATED_ON, Timestamp.valueOf(this.createdOn));
 		
 		return record;
@@ -57,6 +59,20 @@ public class ProductEntity extends BaseEntity<ProductEntity> {
 		return this;
 	}
 
+	private int price;
+	public int getPrice() {
+		return this.count;
+	}
+	public ProductEntity setPrice(int price) {
+		if (this.price != price) {
+			thisprice = price;
+			this.propertyChanged(ProductFieldNames.PRICE);
+		}
+		
+		return this;
+	}
+
+	
 	private LocalDateTime createdOn;
 	public LocalDateTime getCreatedOn() {
 		return this.createdOn;
@@ -75,6 +91,7 @@ public class ProductEntity extends BaseEntity<ProductEntity> {
 		super(new ProductRepository());
 		
 		this.count = -1;
+		this.price = -1;
 		this.lookupCode = StringUtils.EMPTY;
 		this.createdOn = LocalDateTime.now();
 	}
@@ -83,6 +100,7 @@ public class ProductEntity extends BaseEntity<ProductEntity> {
 		super(id, new ProductRepository());
 		
 		this.count = -1;
+		this.price = -1;
 		this.lookupCode = StringUtils.EMPTY;
 		this.createdOn = LocalDateTime.now();
 	}
@@ -91,6 +109,7 @@ public class ProductEntity extends BaseEntity<ProductEntity> {
 		super(apiProduct.getId(), new ProductRepository());
 		
 		this.count = apiProduct.getCount();
+		this.price = apiProduct.getPrice();
 		this.lookupCode = apiProduct.getLookupCode();
 
 		this.createdOn = LocalDateTime.now();
