@@ -36,6 +36,15 @@ public class Product {
 		return this;
 	}
 	
+	private int price;
+	public int getPrice() {
+		return this.price;
+	}
+	public Product setPrice(int price) {
+		this.price = price;
+		return this;
+	}
+	
 	private LocalDateTime createdOn;
 	public LocalDateTime getCreatedOn() {
 		return this.createdOn;
@@ -71,6 +80,7 @@ public class Product {
 	
 	public Product() {
 		this.count = -1;
+		this.price = -1;
 		this.lookupCode = "";
 		this.id = new UUID(0, 0);
 		this.createdOn = LocalDateTime.now();
@@ -81,6 +91,7 @@ public class Product {
 	public Product(ProductEntity productEntity) {
 		this.id = productEntity.getId();
 		this.count = productEntity.getCount();
+		this.price = productEntity.getPrice();
 		this.createdOn = productEntity.getCreatedOn();
 		this.lookupCode = productEntity.getLookupCode();
 
