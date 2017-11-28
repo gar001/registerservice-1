@@ -12,20 +12,20 @@ import edu.uark.models.entities.TransactionEntity;
 import edu.uark.models.entities.fieldnames.TransactionFieldNames; //
 import edu.uark.models.repositories.interfaces.TransactionRepositoryInterface; //
 
-public class ProductRepository extends BaseRepository<ProductEntity> implements ProductRepositoryInterface {
+public class TransactionRepository extends BaseRepository<TransactionEntity> implements TransactionRepositoryInterface {
 	@Override
-	public ProductEntity byLookupCode(String lookupCode) {
+	public TransactionEntity byRecordId(string id) {
 		return this.firstOrDefaultWhere(
 			new WhereContainer(
 				(new WhereClause()).
 					postgreFunction(PostgreFunctionType.LOWER).
 					table(this.primaryTable).
-					fieldName(ProductFieldNames.LOOKUP_CODE).
+					fieldName(ProductFieldNames.RECORD_ID).
 					comparison(SQLComparisonType.EQUALS)
 			),
 			(ps) -> {
 				try {
-					ps.setObject(1, lookupCode.toLowerCase());
+					ps.setObject(1, id.toLowerCase());
 				} catch (SQLException e) {}
 
 				return ps;
@@ -34,12 +34,12 @@ public class ProductRepository extends BaseRepository<ProductEntity> implements 
 	}
 	
 	@Override
-	public ProductEntity createOne() {
-		return new ProductEntity();
+	public TransactionEntity createOne() {
+		return new TransactionEntity();
 	}
 	
-	public ProductRepository() {
-		super(DatabaseTable.PRODUCT);
+	public TransactionRepository() {
+		super(DatabaseTable.TRANSACTION);
 	}
 }
 
