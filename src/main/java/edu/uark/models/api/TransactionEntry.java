@@ -80,7 +80,16 @@ public class TransactionEntry {
 		this.products = new ProductListing();
 	}
 	
-	public TransactionEntry(TransactionEntity transactionEntity) {
+	public TransactionEntry(TransactionEntry transactionEntry) {
+		this.Id = transactionEntry.getId();
+		this.products = new ProductListing();
+		this.setProducts(transactionEntry.getProducts());
+
+		this.apiRequestMessage = StringUtils.EMPTY;
+		this.apiRequestStatus = TransactionApiRequestStatus.OK;
+	}
+	
+	public TransactionEntry(TransactionEntryEntity transactionEntryEntity) {
 		this.Id = transactionEntryEntity.getId();
 		this.products = new ProductListing();
 		this.setProducts(transactionEntryEntity.getProducts());
