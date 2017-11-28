@@ -16,9 +16,9 @@ import edu.uark.models.api.Transaction;
 
 @RestController
 @RequestMapping(value = "/employee")
-public class EmployeeRestController {
+public class TransactionRestController {
 	@RequestMapping(value = "/apiv0/{transactionId}", method = RequestMethod.GET)
-	public Employee getTransaction(@PathVariable UUID transactionId) {
+	public Transaction getTransaction(@PathVariable UUID transactionId) {
 		return (new transactionQuery()).
 			setTransactionId(transactionId).
 			execute();
