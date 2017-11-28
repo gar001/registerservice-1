@@ -13,7 +13,7 @@ import edu.uark.models.entities.TransactionEntryEntity;
 import edu.uark.models.repositories.TransactionEntryRepository;
 import edu.uark.models.repositories.interfaces.TransactionEntryRepositoryInterface;
 
-public class TransactionSaveCommand implements ResultCommandInterface<TransactionEntry> {
+public class TransactionEntrySaveCommand implements ResultCommandInterface<TransactionEntry> {
 	@Override
 	public TransactionEntry execute() {
 		
