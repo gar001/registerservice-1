@@ -13,25 +13,6 @@ import edu.uark.models.entities.fieldnames.TransactionFieldNames; //
 import edu.uark.models.repositories.interfaces.TransactionRepositoryInterface; //
 
 public class TransactionRepository extends BaseRepository<TransactionEntity> implements TransactionRepositoryInterface {
-	@Override
-	public TransactionEntity byRecordId(string id) {
-		return this.firstOrDefaultWhere(
-			new WhereContainer(
-				(new WhereClause()).
-					postgreFunction(PostgreFunctionType.LOWER).
-					table(this.primaryTable).
-					fieldName(ProductFieldNames.RECORD_ID).
-					comparison(SQLComparisonType.EQUALS)
-			),
-			(ps) -> {
-				try {
-					ps.setObject(1, id.toLowerCase());
-				} catch (SQLException e) {}
-
-				return ps;
-			}
-		);
-	}
 	
 	@Override
 	public TransactionEntity createOne() {
