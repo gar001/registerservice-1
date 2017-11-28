@@ -27,8 +27,9 @@ public class TransactionEntry {
 	}
 	public TransactionEntry setProducts(ProductListing products) {
 		this.products.clear();
-		Product input = new Product();
+		Product input;
 		for (int i = 0; i < products.size(); i++) {
+			input = new Product();
 			input = products.get(i);
 			this.products.add(input);
 		}
@@ -63,13 +64,23 @@ public class TransactionEntry {
 			}
 		}	
 	} 
+	
+	public Transaction createTransaction (UUID cashierId, String type, UUID referenceId) {
+		Transaction transaction = new Transaction();
+		transaction.setRecordId(this.id);
+		transaction.setCashierId(cashierId);
+		transaction.setTotalAmount(this.products.getSum());
+		transaction.setType(type);
+		transaction.setReferenceId(referenceId);
+		return transaction;
+	}
 
-	public Transaction() {
+	public TransactionEntry() {
 		this.Id = new UUID(0, 0);
 		this.products = new ProductListing();
 	}
 	
-	public Transaction(TransactionEntity transactionEntity) {
+	public TransactionEntry(TransactionEntity transactionEntity) {
 		this.Id = transactionEntryEntity.getId();
 		this.products = new ProductListing();
 		this.setProducts(transactionEntryEntity.getProducts());
