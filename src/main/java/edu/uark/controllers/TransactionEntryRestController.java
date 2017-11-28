@@ -25,14 +25,14 @@ public class EmployeeRestController {
 			execute();
 	}
 
-	@RequestMapping(value = "/apiv0/", method = RequestMethod.PUT)
+	@RequestMapping(value = "/apiv0/removeproduct", method = RequestMethod.PUT)
 	public TransactionEntry addProduct(@RequestBody RemoveProduct removeProduct) {
 		return (new TransactionEntryAddProductCommand()).
 			setApiTransactionEntry(transactionEntry).
 			execute();
 	}
 
-	@RequestMapping(value = "/apiv0/", method = RequestMethod.PUT)
+	@RequestMapping(value = "/apiv0/addproduct", method = RequestMethod.PUT)
 	public TransactionEntry removeProduct(@RequestBody AddProduct addProduct) {
 		return (new TransactionEntryRemoveProductCommand()).
 			setApiTransactionEntry(transactionEntry).
