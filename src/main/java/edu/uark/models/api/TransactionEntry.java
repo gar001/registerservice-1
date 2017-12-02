@@ -21,45 +21,46 @@ public class TransactionEntry {
 		return this;
 	}
 
-	private ProductListing products;	
+	private ProductListing productListing;	
 	public UUID getProducts() {
-		return this.products;
+		return this.productListing.getProducts();
 	}
 	public TransactionEntry setProducts(ProductListing products) {
-		this.products.clear();
+		this.productListing.getProducts().clear();
 		Product input;
 		for (int i = 0; i < products.size(); i++) {
 			input = new Product();
-			input = products.get(i);
-			this.products.add(input);
+			input = productListing.getProducts().get(i);
+			this.productListing.addProduct(input);
 		}
 		return this;
 	}
 
 	public TransactionEntry addProduct(Product product) {
-		int index = this.products.indexOf(product);
+		int index = this.productListing.getProducts().indexOf(product);
 		int quantity;
 		if (index == -1){
-			this.products.add(product);
+			this.productListing.addProduct(product);
 			return this;
 		} else {
-			quantity = this.products.get(index).getQuantity();
-			this.products.get(index).set(quantity + 1);
+			quantity = this.productListing.getProducts().get(index).getQuantity();
+			this.productListing.getProducts().get(index).set(quantity + 1);
+			return this;
 		}
 	} 
 	
 	public TransactionEntry removeProduct(Product product) {
-		int index = this.products.indexOf(product);
-		int quantity; this.products.get(index).getQuantity();
+		int index = this.getProducts().indexOf(product);
+		int quantity; this.getProducts().get(index).getQuantity();
 		if (index == -1){
 			return this;
 		} else {
-			quantity = this.products.get(index).getQuantity();
+			quantity = this.productListing.getProducts().get(index).getQuantity();
 			if (quantity > 1) {
-				this.products.get(index).setQuantity(quantity - 1);
+				this.productListing.getProducts().get(index).setQuantity(quantity - 1);
 				return this;
 			} else { 
-				this.products.remove(index);
+				this.productListing.getProducts().remove(index);
 				return this;
 			}
 		}	
