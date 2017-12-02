@@ -18,7 +18,7 @@ public class ProductEntity extends BaseEntity<ProductEntity> {
 	@Override
 	protected void fillFromRecord(ResultSet rs) throws SQLException {
 		this.lookupCode = rs.getString(ProductFieldNames.LOOKUP_CODE);
-		this.count = rs.getInt(ProductFieldNames.COUNT);
+		this.count = rs.getInt(ProductFieldNames.QUANTITY);
 		this.price = rs.getInt(ProductFieldNames.PRICE);
 		this.createdOn = rs.getTimestamp(ProductFieldNames.CREATED_ON).toLocalDateTime();
 	}
@@ -26,7 +26,7 @@ public class ProductEntity extends BaseEntity<ProductEntity> {
 	@Override
 	protected Map<String, Object> fillRecord(Map<String, Object> record) {
 		record.put(ProductFieldNames.LOOKUP_CODE, this.lookupCode);
-		record.put(ProductFieldNames.COUNT, this.count);
+		record.put(ProductFieldNames.QUANTITY, this.QUANTITY);
 		record.put(ProductFieldNames.PRICE, this.price);
 		record.put(ProductFieldNames.CREATED_ON, Timestamp.valueOf(this.createdOn));
 		
@@ -46,13 +46,13 @@ public class ProductEntity extends BaseEntity<ProductEntity> {
 		return this;
 	}
 
-	private int count;
-	public int getCount() {
-		return this.count;
+	private int quantity;
+	public int getQUantity() {
+		return this.quantity;
 	}
 	public ProductEntity setCount(int count) {
-		if (this.count != count) {
-			this.count = count;
+		if (this.quantity != quantity) {
+			this.quantity = quantity;
 			this.propertyChanged(ProductFieldNames.COUNT);
 		}
 		
@@ -61,7 +61,7 @@ public class ProductEntity extends BaseEntity<ProductEntity> {
 
 	private int price;
 	public int getPrice() {
-		return this.count;
+		return this.price;
 	}
 	public ProductEntity setPrice(int price) {
 		if (this.price != price) {
@@ -90,7 +90,7 @@ public class ProductEntity extends BaseEntity<ProductEntity> {
 	public ProductEntity() {
 		super(new ProductRepository());
 		
-		this.count = -1;
+		this.quantity = -1;
 		this.price = -1;
 		this.lookupCode = StringUtils.EMPTY;
 		this.createdOn = LocalDateTime.now();
@@ -99,7 +99,7 @@ public class ProductEntity extends BaseEntity<ProductEntity> {
 	public ProductEntity(UUID id) {
 		super(id, new ProductRepository());
 		
-		this.count = -1;
+		this.quantity = -1;
 		this.price = -1;
 		this.lookupCode = StringUtils.EMPTY;
 		this.createdOn = LocalDateTime.now();
@@ -108,7 +108,7 @@ public class ProductEntity extends BaseEntity<ProductEntity> {
 	public ProductEntity(Product apiProduct) {
 		super(apiProduct.getId(), new ProductRepository());
 		
-		this.count = apiProduct.getCount();
+		this.quantity = apiProduct.getCount();
 		this.price = apiProduct.getPrice();
 		this.lookupCode = apiProduct.getLookupCode();
 
