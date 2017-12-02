@@ -79,13 +79,23 @@ public class Product {
 	}
 	
 	public Product() {
-		this.count = -1;
+		this.quantity = -1;
 		this.price = -1;
 		this.lookupCode = "";
 		this.id = new UUID(0, 0);
 		this.createdOn = LocalDateTime.now();
 		this.apiRequestMessage = StringUtils.EMPTY;
 		this.apiRequestStatus = ProductApiRequestStatus.OK;
+	}
+	
+	public Product(Product copiedProduct) {
+		this.quantity = copiedProduct.getQuantity();
+		this.price = copiedProduct.getPrice();
+		this.lookupCode = copiedProduct.getLookUpCode();
+		this.id = copiedProduct.getId();
+		this.createdOn = copiedProduct.getCreatedOn();
+		this.apiRequestMessage = copiedProduct.getApiRequestMessage();
+		this.apiRequestStatus = copiedProduct.getApiRequestStatus();
 	}
 	
 	public Product(ProductEntity productEntity) {
