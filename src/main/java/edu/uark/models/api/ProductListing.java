@@ -28,4 +28,14 @@ public class ProductListing {
 	public ProductListing() {
 		this.products = new LinkedList<Product>();
 	}
+	
+	public ProductListing(ProductListing copiedListing) {
+	        copiedProducts = copiedListing.getProducts();
+		this.products = new LinkedList<Product>();
+		Product copiedProduct;
+		for (int x = 0; x < copiedListing.size(); x++) {
+				copiedProduct = new Product(copiedProducts.get(x));
+				this.products.add(copiedProduct);
+		}
+	}
 }
