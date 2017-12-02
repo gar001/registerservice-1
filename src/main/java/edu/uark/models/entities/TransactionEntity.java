@@ -31,7 +31,7 @@ public class TransactionEntity extends BaseEntity<TransactionEntity> {
 		record.put(TransactionFieldNames.CASHIER_ID, this.cashierId);
 		record.put(TransactionFieldNames.REFERENCE_ID, this.referenceId);
 		record.put(TransactionFieldNames.TOTAL_AMOUNT, this.totalAmount);
-		record.put(TransactionFieldNames.Type, this.type);
+		record.put(TransactionFieldNames.TYPE, this.type);
 		record.put(TransactionFieldNames.CREATED_ON, Timestamp.valueOf(this.createdOn));		
 
 		return record;
