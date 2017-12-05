@@ -15,6 +15,25 @@ import edu.uark.models.repositories.interfaces.TransactionRepositoryInterface; /
 public class TransactionRepository extends BaseRepository<TransactionEntity> implements TransactionRepositoryInterface {
 	
 	@Override
+	public boolean transactionExists(String transactionRecordId) {
+		return this.existsWhere(
+			new WhereContainer(
+				(new WhereClause()).
+					table(this.primaryTable).
+					fieldName(TransactionFieldName.RECORD_ID).
+					comparison(SQLComparisonType.EQUALS)
+			),
+			(ps) -> {
+				try {
+					ps.setObject(1, recordId);
+				} catch (SQLException e) {}
+
+				return ps;
+			}
+		);
+}
+	
+	@Override
 	public TransactionEntity createOne() {
 		return new TransactionEntity();
 	}
