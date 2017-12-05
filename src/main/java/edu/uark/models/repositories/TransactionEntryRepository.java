@@ -15,7 +15,7 @@ import edu.uark.models.repositories.interfaces.TransactionEntryRepositoryInterfa
 public class TransactionEntryRepository extends BaseRepository<TransactionEntryEntity> implements TransactionEntryRepositoryInterface {
 	
 	@Override
-	public boolean transactionExists(String id) {
+	public boolean exists(String id) {
 		return this.existsWhere(
 			new WhereContainer(
 				(new WhereClause()).
