@@ -35,6 +35,16 @@ public class TransactionEntry {
 		}
 		return this;
 	}
+	public TransactionEntry setProducts(List<Product> products) {
+		this.productListing.getProducts().clear();
+		Product input;
+		for (int i = 0; i < products.size(); i++) {
+			input = new Product();
+			input = products.get(i);
+			this.productListing.addProduct(input);
+		}
+		return this;
+	}
 
 	public TransactionEntry addProduct(Product product) {
 		int index = this.productListing.getProducts().indexOf(product);
