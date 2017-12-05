@@ -27,7 +27,4 @@ public class CreateTransactionCommand {
 		this.apiTransactionEntry = apiTransactionEntry;
 		return this;
 	}
-
-	public TransactionEntrySaveCommand() {
-	}
 }
