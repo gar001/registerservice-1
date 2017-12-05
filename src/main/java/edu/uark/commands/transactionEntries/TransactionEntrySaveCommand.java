@@ -18,11 +18,11 @@ public class TransactionEntrySaveCommand implements ResultCommandInterface<Trans
 	public TransactionEntry execute() {
 		
 		TransactionEntity transactionEntity;
-		if (StringUtils.isBlank(this.apiTransactionEntry.getTransactionEntryId())) {
+		if (StringUtils.isBlank(this.apiTransactionEntry.getId())) {
 			String newId;
 			do {
 				newId = RandomStringUtils.randomNumeric(ID_LENGTH);
-			} while (this.transactionEntryRepository.transactionEntryExists(newId));
+			} while (this.transactionEntryRepository.exists(newId));
 
 			this.apiTransactionEntry.setId(newId);
 			transactionEntryEntity = new TransactionEntryEntity(this.apiTransactionEntry);
